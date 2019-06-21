@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Hola · Who+X</title>
+    <title>《Python-100-Days》- 学习笔记 · Who+X</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/" >Who+X</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Hola</a>
+                <a href="#" class="post-name">《Python-100-Days》- 学习笔记</a>
             </div>
     </div>
     
@@ -256,13 +256,13 @@ height:50vh;
     <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/articles/Python.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Hola
+            《Python-100-Days》- 学习笔记
             <!-- 404 -->
             
         </h1>
@@ -279,14 +279,22 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">0</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">320</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/06/20</span>
+                    <span class="post-intro-time">2019/06/21</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -410,15 +418,23 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>&ensp;偶然间发现一个python的教程地址为：<a href="https://github.com/jackfrued/Python-100-Days" target="_blank" rel="noopener">Python - 100天从新手到大师</a>，借此来提高自己的Python水平。</p>
+<h1 id="0x01-练习"><a href="#0x01-练习" class="headerlink" title="0x01 练习"></a>0x01 练习</h1><h2 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h2><h3 id="在Python交互环境中查看下面的代码结果，并将内容翻译成中文。"><a href="#在Python交互环境中查看下面的代码结果，并将内容翻译成中文。" class="headerlink" title="在Python交互环境中查看下面的代码结果，并将内容翻译成中文。"></a>在Python交互环境中查看下面的代码结果，并将内容翻译成中文。</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> this</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">The Zen of Python, by Tim Peters</span><br><span class="line"></span><br><span class="line">Beautiful is better than ugly.</span><br><span class="line">Explicit is better than implicit.</span><br><span class="line">Simple is better than complex.</span><br><span class="line">Complex is better than complicated.</span><br><span class="line">Flat is better than nested.</span><br><span class="line">Sparse is better than dense.</span><br><span class="line">Readability counts.</span><br><span class="line">Special cases aren&apos;t special enough to break the rules.</span><br><span class="line">Although practicality beats purity.</span><br><span class="line">Errors should never pass silently.</span><br><span class="line">Unless explicitly silenced.</span><br><span class="line">In the face of ambiguity, refuse the temptation to guess.</span><br><span class="line">There should be one-- and preferably only one --obvious way to do it.</span><br><span class="line">Although that way may not be obvious at first unless you&apos;re Dutch.</span><br><span class="line">Now is better than never.</span><br><span class="line">Although never is often better than *right* now.</span><br><span class="line">If the implementation is hard to explain, it&apos;s a bad idea.</span><br><span class="line">If the implementation is easy to explain, it may be a good idea.</span><br><span class="line">Namespaces are one honking great idea -- let&apos;s do more of those!</span><br></pre></td></tr></table></figure>
+
+<h3 id="学习使用turtle在屏幕上绘制图形。"><a href="#学习使用turtle在屏幕上绘制图形。" class="headerlink" title="学习使用turtle在屏幕上绘制图形。"></a>学习使用turtle在屏幕上绘制图形。</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> turtle</span><br><span class="line"></span><br><span class="line">turtle.pensize(<span class="number">4</span>)      <span class="comment">#设置笔的宽度</span></span><br><span class="line">turtle.pencolor(<span class="string">'red'</span>) <span class="comment">#设置笔的颜色</span></span><br><span class="line">turtle.forward(<span class="number">100</span>)    <span class="comment">#x轴方向前进100像素</span></span><br><span class="line">turtle.right(<span class="number">90</span>)       <span class="comment">#右旋转90度</span></span><br><span class="line">turtle.forward(<span class="number">100</span>)    <span class="comment">#x轴方向前进100像素</span></span><br><span class="line">turtle.right(<span class="number">90</span>)       <span class="comment">#右旋转90度</span></span><br><span class="line">turtle.forward(<span class="number">100</span>)    <span class="comment">#x轴方向前进100像素</span></span><br><span class="line">turtle.right(<span class="number">90</span>)       <span class="comment">#右旋转90度</span></span><br><span class="line">turtle.forward(<span class="number">100</span>)    <span class="comment">#x轴方向前进100像素</span></span><br><span class="line">turtle.mainloop()      <span class="comment">#事件循环</span></span><br></pre></td></tr></table></figure>
+
+
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://kyl1n.github.io">Who+X</a>
-            <p>原文链接：<a href="https://kyl1n.github.io/2019/06/20/Hola/">https://kyl1n.github.io/2019/06/20/Hola/</a>
-            <p>发表日期：<a href="https://kyl1n.github.io/2019/06/20/Hola/">June 20th 2019, 1:09:12 pm</a>
-            <p>更新日期：<a href="https://kyl1n.github.io/2019/06/20/Hola/">June 20th 2019, 1:09:12 pm</a>
+            <p>原文链接：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记01/">https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记01/</a>
+            <p>发表日期：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记01/">June 21st 2019, 12:36:01 pm</a>
+            <p>更新日期：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记01/">June 21st 2019, 7:53:50 pm</a>
             <p>版权声明：</p>
         </div>
     
@@ -426,13 +442,13 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/06/21/《Python-100-Days》-学习笔记01/" title= "《Python-100-Days》- 学习笔记">
-                    <div class="nextTitle">《Python-100-Days》- 学习笔记</div>
-                </a>
-            
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/06/20/Hola/" title= "Hola">
+                    <div class="prevTitle">Hola</div>
+                </a>
             
         </li>
     </ul>
@@ -558,7 +574,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0x00-前言"><span class="toc-number">1.</span> <span class="toc-text">0x00 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01-练习"><span class="toc-number">2.</span> <span class="toc-text">0x01 练习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Day-1"><span class="toc-number">2.1.</span> <span class="toc-text">Day 1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在Python交互环境中查看下面的代码结果，并将内容翻译成中文。"><span class="toc-number">2.1.1.</span> <span class="toc-text">在Python交互环境中查看下面的代码结果，并将内容翻译成中文。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习使用turtle在屏幕上绘制图形。"><span class="toc-number">2.1.2.</span> <span class="toc-text">学习使用turtle在屏幕上绘制图形。</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
