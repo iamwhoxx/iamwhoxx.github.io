@@ -429,22 +429,22 @@ height:50vh;
 <h1 id="0x02-Day02-语言元素"><a href="#0x02-Day02-语言元素" class="headerlink" title="0x02 Day02-语言元素"></a>0x02 Day02-语言元素</h1><h2 id="知识点-1"><a href="#知识点-1" class="headerlink" title="知识点"></a>知识点</h2><p>【指令和程序】</p>
 <p>“冯·诺依曼结构”有两个关键点，一是指出要将存储设备与中央处理器分开，二是提出了将数据以二进制方式编码。</p>
 <p>【变量和类型】</p>
-<p>整型：Python中可以处理任意大小的整数（Python 2.x中有int和long两种类型的整数，在Python 3.x中整数只有int这一种了），支持二进制（如<code>0b100</code>，换算成十进制是4）、八进制（如<code>0o100</code>，换算成十进制是64）、十进制（<code>100</code>）和十六进制（<code>0x100</code>，换算成十进制是256）的表示法。</p>
-<p>浮点型：浮点数除了数学写法（如<code>123.456</code>）之外还支持科学计数法（如<code>1.23456e2</code>）。</p>
-<p>字符串型：字符串是以单引号或双引号括起来的任意文本，比如<code>&#39;hello&#39;</code>和<code>&quot;hello&quot;</code>,字符串还有原始字符串表示法、字节字符串表示法、Unicode字符串表示法，而且可以书写成多行的形式（用三个单引号或三个双引号开头，三个单引号或三个双引号结尾）</p>
+<p><strong>整型：</strong>Python中可以处理任意大小的整数（Python 2.x中有int和long两种类型的整数，在Python 3.x中整数只有int这一种了），支持二进制（如<code>0b100</code>，换算成十进制是4）、八进制（如<code>0o100</code>，换算成十进制是64）、十进制（<code>100</code>）和十六进制（<code>0x100</code>，换算成十进制是256）的表示法。</p>
+<p><strong>浮点型：</strong>浮点数除了数学写法（如<code>123.456</code>）之外还支持科学计数法（如<code>1.23456e2</code>）。</p>
+<p><strong>字符串型：</strong>字符串是以单引号或双引号括起来的任意文本，比如<code>&#39;hello&#39;</code>和<code>&quot;hello&quot;</code>,字符串还有原始字符串表示法、字节字符串表示法、Unicode字符串表示法，而且可以书写成多行的形式（用三个单引号或三个双引号开头，三个单引号或三个双引号结尾）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">raw_string     = <span class="string">r'\r\n'</span>        <span class="comment">#原始字符串</span></span><br><span class="line">bytes_string   = <span class="string">'\x63\x61\x63'</span> <span class="comment">#字节字符串</span></span><br><span class="line">unicode_string = <span class="string">'\u4f60\u597d'</span> <span class="comment">#unicode字符串</span></span><br></pre></td></tr></table></figure>
 
-<p>布尔型：布尔值只有<code>True</code>、<code>False</code>两种值，要么是<code>True</code>，要么是<code>False</code>。</p>
-<p>复数型：形如<code>3+5j</code>，跟数学上的复数表示一样，唯一不同的是虚部的<code>i</code>换成了<code>j</code>。</p>
+<p><strong>布尔型：</strong>布尔值只有<code>True</code>、<code>False</code>两种值，要么是<code>True</code>，要么是<code>False</code>。</p>
+<p><strong>复数型：</strong>形如<code>3+5j</code>，跟数学上的复数表示一样，唯一不同的是虚部的<code>i</code>换成了<code>j</code>。</p>
 <p>【变量命名】</p>
 <ul>
-<li>硬性规则：<ul>
+<li><strong>硬性规则：</strong><ul>
 <li>变量名由字母（广义的Unicode字符，不包括特殊字符）、数字和下划线构成，数字不能开头。</li>
 <li>大小写敏感（大写的<code>a</code>和小写的<code>A</code>是两个不同的变量）。</li>
 <li>不要跟关键字（有特殊含义的单词，后面会讲到）和系统保留字（如函数、模块等的名字）冲突。</li>
 </ul>
 </li>
-<li>PEP 8要求：<ul>
+<li><strong>PEP 8要求：</strong><ul>
 <li>用小写字母拼写，多个单词用下划线连接。</li>
 <li>受保护的实例属性用单个下划线开头（后面会讲到）。</li>
 <li>私有的实例属性用两个下划线开头（后面会讲到）。</li>
@@ -545,7 +545,7 @@ height:50vh;
             <p>原文作者：<a href="https://kyl1n.github.io">Who+X</a>
             <p>原文链接：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记01/">https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记01/</a>
             <p>发表日期：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记01/">June 21st 2019, 12:36:01 pm</a>
-            <p>更新日期：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记01/">June 22nd 2019, 5:53:00 pm</a>
+            <p>更新日期：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记01/">June 22nd 2019, 11:17:03 pm</a>
             <p>版权声明：</p>
         </div>
     
