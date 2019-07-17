@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>《Python-100-Days》- 学习笔记06 · Who+X</title>
+    <title>《Python-100-Days》- 学习笔记10 · Who+X</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/" >Who+X</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">《Python-100-Days》- 学习笔记06</a>
+                <a href="#" class="post-name">《Python-100-Days》- 学习笔记10</a>
             </div>
     </div>
     
@@ -262,7 +262,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            《Python-100-Days》- 学习笔记06
+            《Python-100-Days》- 学习笔记10
             <!-- 404 -->
             
         </h1>
@@ -289,12 +289,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">642</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">51</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/06/21</span>
+                    <span class="post-intro-time">2019/06/30</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -419,47 +419,16 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>偶然间发现一个python的教程地址为：<a href="https://github.com/jackfrued/Python-100-Days" target="_blank" rel="noopener">Python - 100天从新手到大师</a>，借此来提高自己的Python水平。</p>
-<h1 id="0x06-Day06-函数和模块的使用"><a href="#0x06-Day06-函数和模块的使用" class="headerlink" title="0x06 Day06-函数和模块的使用"></a>0x06 Day06-函数和模块的使用</h1><h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="函数的作用"><a href="#函数的作用" class="headerlink" title="函数的作用"></a>函数的作用</h3><p>编程大师Martin Fowler先生曾经说过：“代码有很多种坏味道，重复是最坏的一种！”，要写出高质量的代码首先要解决的就是重复代码的问题。</p>
-<h3 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h3><p>在Python中可以使用<code>def</code>关键字来定义函数，和变量一样每个函数也有一个响亮的名字，而且命名规则跟变量的命名规则是一致的。在函数名后面的圆括号中可以放置传递给函数的参数，这一点和数学上的函数非常相似，程序中函数的参数就相当于是数学上说的函数的自变量，而函数执行完成后我们可以通过<code>return</code>关键字来返回一个值，这相当于数学上说的函数的因变量。</p>
-<h3 id="函数的参数"><a href="#函数的参数" class="headerlink" title="函数的参数"></a>函数的参数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在参数名前面的*表示args是一个可变参数</span></span><br><span class="line"><span class="comment"># 即在调用add函数时可以传入0个或多个参数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(*args)</span>:</span></span><br><span class="line">    total = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> val <span class="keyword">in</span> args:</span><br><span class="line">        total += val</span><br><span class="line">    <span class="keyword">return</span> total</span><br></pre></td></tr></table></figure>
-
-<h3 id="用模块管理函数"><a href="#用模块管理函数" class="headerlink" title="用模块管理函数"></a>用模块管理函数</h3><p>module1.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'hello, world!'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>module2.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'goodbye, world!'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>test.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> module1 <span class="keyword">import</span> foo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出hello, world!</span></span><br><span class="line">foo()</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> module2 <span class="keyword">import</span> foo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出goodbye, world!</span></span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
-
-<p>也可以按照如下所示的方式来区分到底要使用哪一个<code>foo</code>函数。</p>
-<p>test.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> module1 <span class="keyword">as</span> m1</span><br><span class="line"><span class="keyword">import</span> module2 <span class="keyword">as</span> m2</span><br><span class="line"></span><br><span class="line">m1.foo()</span><br><span class="line">m2.foo()</span><br></pre></td></tr></table></figure>
-
-<p>module3.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># __name__是Python中一个隐含的变量它代表了模块的名字</span></span><br><span class="line"><span class="comment"># 只有被Python解释器直接执行的模块的名字才是__main__</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print(<span class="string">'call foo()'</span>)</span><br><span class="line">    foo()</span><br><span class="line">    print(<span class="string">'call bar()'</span>)</span><br><span class="line">    bar()</span><br></pre></td></tr></table></figure>
-
-<h2 id="练习（略）"><a href="#练习（略）" class="headerlink" title="练习（略）"></a>练习（略）</h2><blockquote>
-<p><strong>说明：</strong> Python中可以在函数内部再定义函数</p>
-</blockquote>
-<blockquote>
-<p><strong>说明：</strong> 使用<code>global</code>关键字来指示<code>foo</code>函数中的变量<code>a</code>来自于全局作用域</p>
-</blockquote>
-<blockquote>
-<p><strong>说明：</strong> 很多人经常会将“闭包”一词和<a href="https://zh.wikipedia.org/wiki/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">“匿名函数”</a>混为一谈，但实际上它们是不同的概念，如果想提前了解这个概念，推荐看看<a href="https://zh.wikipedia.org/wiki/" target="_blank" rel="noopener">维基百科</a>或者<a href="https://www.zhihu.com/" target="_blank" rel="noopener">知乎</a>上对这个概念的讨论。</p>
-</blockquote>
-<p>说了那么多，其实结论很简单，从现在开始我们可以将Python代码按照下面的格式进行书写，这一点点的改进其实就是在我们理解了函数和作用域的基础上跨出的巨大的一步。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># Todo: Add your code here</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
+<h1 id="0x10-Day10-图形用户界面和游戏开发"><a href="#0x10-Day10-图形用户界面和游戏开发" class="headerlink" title="0x10 Day10-图形用户界面和游戏开发"></a>0x10 Day10-图形用户界面和游戏开发</h1><p>（略）</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://kyl1n.github.io">Who+X</a>
-            <p>原文链接：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记06/">https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记06/</a>
-            <p>发表日期：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记06/">June 21st 2019, 12:36:06 pm</a>
-            <p>更新日期：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记06/">July 18th 2019, 12:35:09 am</a>
+            <p>原文链接：<a href="https://kyl1n.github.io/2019/06/30/《Python-100-Days》-学习笔记10/">https://kyl1n.github.io/2019/06/30/《Python-100-Days》-学习笔记10/</a>
+            <p>发表日期：<a href="https://kyl1n.github.io/2019/06/30/《Python-100-Days》-学习笔记10/">June 30th 2019, 12:36:10 pm</a>
+            <p>更新日期：<a href="https://kyl1n.github.io/2019/06/30/《Python-100-Days》-学习笔记10/">July 18th 2019, 12:44:13 am</a>
             <p>版权声明：</p>
         </div>
     
@@ -468,16 +437,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/06/21/《Python-100-Days》-学习笔记07/" title= "《Python-100-Days》- 学习笔记07">
-                    <div class="nextTitle">《Python-100-Days》- 学习笔记07</div>
+                <a href= "/2019/07/01/《Python-100-Days》-学习笔记11/" title= "《Python-100-Days》- 学习笔记11">
+                    <div class="nextTitle">《Python-100-Days》- 学习笔记11</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/06/21/《Python-100-Days》-学习笔记05/" title= "《Python-100-Days》- 学习笔记05">
-                    <div class="prevTitle">《Python-100-Days》- 学习笔记05</div>
+                <a href= "/2019/06/29/《Python-100-Days》-学习笔记09/" title= "《Python-100-Days》- 学习笔记09">
+                    <div class="prevTitle">《Python-100-Days》- 学习笔记09</div>
                 </a>
             
         </li>
@@ -604,7 +573,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0x00-前言"><span class="toc-number">1.</span> <span class="toc-text">0x00 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x06-Day06-函数和模块的使用"><span class="toc-number">2.</span> <span class="toc-text">0x06 Day06-函数和模块的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-number">2.1.</span> <span class="toc-text">知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数的作用"><span class="toc-number">2.1.1.</span> <span class="toc-text">函数的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义函数"><span class="toc-number">2.1.2.</span> <span class="toc-text">定义函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数的参数"><span class="toc-number">2.1.3.</span> <span class="toc-text">函数的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用模块管理函数"><span class="toc-number">2.1.4.</span> <span class="toc-text">用模块管理函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#练习（略）"><span class="toc-number">2.2.</span> <span class="toc-text">练习（略）</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0x00-前言"><span class="toc-number">1.</span> <span class="toc-text">0x00 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x10-Day10-图形用户界面和游戏开发"><span class="toc-number">2.</span> <span class="toc-text">0x10 Day10-图形用户界面和游戏开发</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -617,62 +586,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -837,67 +750,67 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记08/" >《Python-100-Days》- 学习笔记08</a>
+            <span class="archive-post-date">07/03</span><a class="archive-post-title" href= "/2019/07/03/《Python-100-Days》-学习笔记13/" >《Python-100-Days》- 学习笔记13</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记13/" >《Python-100-Days》- 学习笔记13</a>
+            <span class="archive-post-date">07/02</span><a class="archive-post-title" href= "/2019/07/02/《Python-100-Days》-学习笔记12/" >《Python-100-Days》- 学习笔记12</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记10/" >《Python-100-Days》- 学习笔记10</a>
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2019/07/01/《Python-100-Days》-学习笔记11/" >《Python-100-Days》- 学习笔记11</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/30</span><a class="archive-post-title" href= "/2019/06/30/《Python-100-Days》-学习笔记10/" >《Python-100-Days》- 学习笔记10</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/29</span><a class="archive-post-title" href= "/2019/06/29/《Python-100-Days》-学习笔记09/" >《Python-100-Days》- 学习笔记09</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/28</span><a class="archive-post-title" href= "/2019/06/28/《Python-100-Days》-学习笔记08/" >《Python-100-Days》- 学习笔记08</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "/2019/06/27/《Python-100-Days》-学习笔记07/" >《Python-100-Days》- 学习笔记07</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/26</span><a class="archive-post-title" href= "/2019/06/26/《Python-100-Days》-学习笔记06/" >《Python-100-Days》- 学习笔记06</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/25</span><a class="archive-post-title" href= "/2019/06/25/《Python-100-Days》-学习笔记05/" >《Python-100-Days》- 学习笔记05</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/24</span><a class="archive-post-title" href= "/2019/06/24/《Python-100-Days》-学习笔记04/" >《Python-100-Days》- 学习笔记04</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/23</span><a class="archive-post-title" href= "/2019/06/23/《Python-100-Days》-学习笔记03/" >《Python-100-Days》- 学习笔记03</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/22</span><a class="archive-post-title" href= "/2019/06/22/《Python-100-Days》-学习笔记02/" >《Python-100-Days》- 学习笔记02</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记01/" >《Python-100-Days》- 学习笔记01</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记11/" >《Python-100-Days》- 学习笔记11</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记09/" >《Python-100-Days》- 学习笔记09</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记12/" >《Python-100-Days》- 学习笔记12</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记07/" >《Python-100-Days》- 学习笔记07</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记06/" >《Python-100-Days》- 学习笔记06</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记04/" >《Python-100-Days》- 学习笔记04</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记02/" >《Python-100-Days》- 学习笔记02</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记05/" >《Python-100-Days》- 学习笔记05</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记03/" >《Python-100-Days》- 学习笔记03</a>
         </li>
     
     
