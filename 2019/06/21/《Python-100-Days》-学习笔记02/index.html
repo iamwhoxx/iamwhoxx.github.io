@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Hola · Who+X</title>
+    <title>《Python-100-Days》- 学习笔记02 · Who+X</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/" >Who+X</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Hola</a>
+                <a href="#" class="post-name">《Python-100-Days》- 学习笔记02</a>
             </div>
     </div>
     
@@ -256,13 +256,13 @@ height:50vh;
     <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/articles/Python.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Hola
+            《Python-100-Days》- 学习笔记02
             <!-- 404 -->
             
         </h1>
@@ -279,14 +279,22 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">878</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/06/20</span>
+                    <span class="post-intro-time">2019/06/21</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -410,16 +418,119 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>Hahahahahahaha!</p>
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>偶然间发现一个python的教程地址为：<a href="https://github.com/jackfrued/Python-100-Days" target="_blank" rel="noopener">Python - 100天从新手到大师</a>，借此来提高自己的Python水平。</p>
+<h1 id="0x02-Day02-语言元素"><a href="#0x02-Day02-语言元素" class="headerlink" title="0x02 Day02-语言元素"></a>0x02 Day02-语言元素</h1><h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>【指令和程序】</p>
+<p>“冯·诺依曼结构”有两个关键点，一是指出要将存储设备与中央处理器分开，二是提出了将数据以二进制方式编码。</p>
+<p>【变量和类型】</p>
+<p><strong>整型：</strong>Python中可以处理任意大小的整数（Python 2.x中有int和long两种类型的整数，在Python 3.x中整数只有int这一种了），支持二进制（如<code>0b100</code>，换算成十进制是4）、八进制（如<code>0o100</code>，换算成十进制是64）、十进制（<code>100</code>）和十六进制（<code>0x100</code>，换算成十进制是256）的表示法。</p>
+<p><strong>浮点型：</strong>浮点数除了数学写法（如<code>123.456</code>）之外还支持科学计数法（如<code>1.23456e2</code>）。</p>
+<p><strong>字符串型：</strong>字符串是以单引号或双引号括起来的任意文本，比如<code>&#39;hello&#39;</code>和<code>&quot;hello&quot;</code>,字符串还有原始字符串表示法、字节字符串表示法、Unicode字符串表示法，而且可以书写成多行的形式（用三个单引号或三个双引号开头，三个单引号或三个双引号结尾）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">raw_string     = <span class="string">r'\r\n'</span>        <span class="comment">#原始字符串</span></span><br><span class="line">bytes_string   = <span class="string">'\x63\x61\x63'</span> <span class="comment">#字节字符串</span></span><br><span class="line">unicode_string = <span class="string">'\u4f60\u597d'</span> <span class="comment">#unicode字符串</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>布尔型：</strong>布尔值只有<code>True</code>、<code>False</code>两种值，要么是<code>True</code>，要么是<code>False</code>。</p>
+<p><strong>复数型：</strong>形如<code>3+5j</code>，跟数学上的复数表示一样，唯一不同的是虚部的<code>i</code>换成了<code>j</code>。</p>
+<p>【变量命名】</p>
+<ul>
+<li><strong>硬性规则：</strong><ul>
+<li>变量名由字母（广义的Unicode字符，不包括特殊字符）、数字和下划线构成，数字不能开头。</li>
+<li>大小写敏感（大写的<code>a</code>和小写的<code>A</code>是两个不同的变量）。</li>
+<li>不要跟关键字（有特殊含义的单词，后面会讲到）和系统保留字（如函数、模块等的名字）冲突。</li>
+</ul>
+</li>
+<li><strong>PEP 8要求：</strong><ul>
+<li>用小写字母拼写，多个单词用下划线连接。</li>
+<li>受保护的实例属性用单个下划线开头（后面会讲到）。</li>
+<li>私有的实例属性用两个下划线开头（后面会讲到）。</li>
+</ul>
+</li>
+</ul>
+<p>【变量类型转换】</p>
+<ul>
+<li><code>int()</code>：将一个数值或字符串转换成整数，可以指定进制。</li>
+<li><code>float()</code>：将一个字符串转换成浮点数。</li>
+<li><code>str()</code>：将指定的对象转换成字符串形式，可以指定编码。</li>
+<li><code>chr()</code>：将整数转换成该编码对应的字符串（一个字符）。</li>
+<li><code>ord()</code>：将字符串（一个字符）转换成对应的编码（整数）。</li>
+</ul>
+<p>【运算符】</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[]</code> <code>[:]</code></td>
+<td>下标，切片</td>
+</tr>
+<tr>
+<td><code>**</code></td>
+<td>指数</td>
+</tr>
+<tr>
+<td><code>~</code> <code>+</code> <code>-</code></td>
+<td>按位取反, 正负号</td>
+</tr>
+<tr>
+<td><code>*</code> <code>/</code> <code>%</code> <code>//</code></td>
+<td>乘，除，模，整除</td>
+</tr>
+<tr>
+<td><code>+</code> <code>-</code></td>
+<td>加，减</td>
+</tr>
+<tr>
+<td><code>&gt;&gt;</code> <code>&lt;&lt;</code></td>
+<td>右移，左移</td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td>按位与</td>
+</tr>
+<tr>
+<td><code>^</code> <code>|</code></td>
+<td>按位异或，按位或</td>
+</tr>
+<tr>
+<td><code>&lt;=</code> <code>&lt;</code> <code>&gt;</code> <code>&gt;=</code></td>
+<td>小于等于，小于，大于，大于等于</td>
+</tr>
+<tr>
+<td><code>==</code> <code>!=</code></td>
+<td>等于，不等于</td>
+</tr>
+<tr>
+<td><code>is</code>  <code>is not</code></td>
+<td>身份运算符</td>
+</tr>
+<tr>
+<td><code>in</code> <code>not in</code></td>
+<td>成员运算符</td>
+</tr>
+<tr>
+<td><code>not</code> <code>or</code> <code>and</code></td>
+<td>逻辑运算符</td>
+</tr>
+<tr>
+<td><code>=</code> <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code> <code>//=</code> <code>**=</code> <code>&amp;=</code> <code>|=</code> <code>^=</code> <code>&gt;&gt;=</code> <code>&lt;&lt;=</code></td>
+<td>（复合）赋值运算符</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>说明：</strong> 在实际开发中，如果搞不清楚优先级可以使用括号来确保运算的执行顺序。</p>
+</blockquote>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><h3 id="华氏温度转摄氏温度。（略）"><a href="#华氏温度转摄氏温度。（略）" class="headerlink" title="华氏温度转摄氏温度。（略）"></a>华氏温度转摄氏温度。（略）</h3><h3 id="输入圆的半径计算计算周长和面积。（略）"><a href="#输入圆的半径计算计算周长和面积。（略）" class="headerlink" title="输入圆的半径计算计算周长和面积。（略）"></a>输入圆的半径计算计算周长和面积。（略）</h3><h3 id="输入年份判断是不是闰年。"><a href="#输入年份判断是不是闰年。" class="headerlink" title="输入年份判断是不是闰年。"></a>输入年份判断是不是闰年。</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">year = int(input(<span class="string">'请输入年份: '</span>))</span><br><span class="line"><span class="comment"># 如果代码太长写成一行不便于阅读 可以使用\或()折行</span></span><br><span class="line">is_leap = (year % <span class="number">4</span> == <span class="number">0</span> <span class="keyword">and</span> year % <span class="number">100</span> != <span class="number">0</span> <span class="keyword">or</span></span><br><span class="line">           year % <span class="number">400</span> == <span class="number">0</span>)</span><br><span class="line">print(is_leap)</span><br></pre></td></tr></table></figure>
+
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://kyl1n.github.io">Who+X</a>
-            <p>原文链接：<a href="https://kyl1n.github.io/2019/06/20/Hola/">https://kyl1n.github.io/2019/06/20/Hola/</a>
-            <p>发表日期：<a href="https://kyl1n.github.io/2019/06/20/Hola/">June 20th 2019, 1:09:12 pm</a>
-            <p>更新日期：<a href="https://kyl1n.github.io/2019/06/20/Hola/">June 21st 2019, 10:43:20 pm</a>
+            <p>原文链接：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记02/">https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记02/</a>
+            <p>发表日期：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记02/">June 21st 2019, 12:36:02 pm</a>
+            <p>更新日期：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记02/">July 18th 2019, 12:37:55 am</a>
             <p>版权声明：</p>
         </div>
     
@@ -428,12 +539,17 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/06/21/《Python-100-Days》-学习笔记01/" title= "《Python-100-Days》- 学习笔记01">
-                    <div class="nextTitle">《Python-100-Days》- 学习笔记01</div>
+                <a href= "/2019/06/21/《Python-100-Days》-学习笔记03/" title= "《Python-100-Days》- 学习笔记03">
+                    <div class="nextTitle">《Python-100-Days》- 学习笔记03</div>
                 </a>
             
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/06/21/《Python-100-Days》-学习笔记01/" title= "《Python-100-Days》- 学习笔记01">
+                    <div class="prevTitle">《Python-100-Days》- 学习笔记01</div>
+                </a>
             
         </li>
     </ul>
@@ -559,7 +675,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0x00-前言"><span class="toc-number">1.</span> <span class="toc-text">0x00 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x02-Day02-语言元素"><span class="toc-number">2.</span> <span class="toc-text">0x02 Day02-语言元素</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-number">2.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#练习"><span class="toc-number">2.2.</span> <span class="toc-text">练习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#华氏温度转摄氏温度。（略）"><span class="toc-number">2.2.1.</span> <span class="toc-text">华氏温度转摄氏温度。（略）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入圆的半径计算计算周长和面积。（略）"><span class="toc-number">2.2.2.</span> <span class="toc-text">输入圆的半径计算计算周长和面积。（略）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入年份判断是不是闰年。"><span class="toc-number">2.2.3.</span> <span class="toc-text">输入年份判断是不是闰年。</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

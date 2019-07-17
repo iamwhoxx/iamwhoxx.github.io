@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Hola · Who+X</title>
+    <title>《Python-100-Days》- 学习笔记08 · Who+X</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -232,7 +232,7 @@
                 <a href="/" >Who+X</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Hola</a>
+                <a href="#" class="post-name">《Python-100-Days》- 学习笔记08</a>
             </div>
     </div>
     
@@ -256,13 +256,13 @@ height:50vh;
     <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/articles/Python.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Hola
+            《Python-100-Days》- 学习笔记08
             <!-- 404 -->
             
         </h1>
@@ -279,14 +279,22 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.5k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/06/20</span>
+                    <span class="post-intro-time">2019/06/21</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -410,16 +418,38 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>Hahahahahahaha!</p>
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>偶然间发现一个python的教程地址为：<a href="https://github.com/jackfrued/Python-100-Days" target="_blank" rel="noopener">Python - 100天从新手到大师</a>，借此来提高自己的Python水平。</p>
+<h1 id="0x08-Day08-面向对象编程基础"><a href="#0x08-Day08-面向对象编程基础" class="headerlink" title="0x08 Day08-面向对象编程基础"></a>0x08 Day08-面向对象编程基础</h1><h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><blockquote>
+<p>把一组数据结构和处理它们的方法组成对象（object），把相同行为的对象归纳为类（class），通过类的封装（encapsulation）隐藏内部细节，通过继承（inheritance）实现类的特化（specialization）和泛化（generalization），通过多态（polymorphism）实现基于对象类型的动态分派。</p>
+</blockquote>
+<p><img src="/2019/06/21/《Python-100-Days》-学习笔记08/oop-zhihu.png" alt></p>
+<h3 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h3><p>简单的说，类是对象的蓝图和模板，而对象是类的实例。这个解释虽然有点像用概念在解释概念，但是从这句话我们至少可以看出，类是抽象的概念，而对象是具体的东西。在面向对象编程的世界中，一切皆为对象，对象都有属性和行为，每个对象都是独一无二的，而且对象一定属于某个类（型）。当我们把一大堆拥有共同特征的对象的静态特征（属性）和动态特征（行为）都抽取出来后，就可以定义出一个叫做“类”的东西。</p>
+<h3 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h3><p>在Python中可以使用<code>class</code>关键字定义类，然后在类中通过之前学习过的函数来定义方法，这样就可以将对象的动态特征描述出来，代码如下所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># __init__是一个特殊方法用于在创建对象时进行初始化操作</span></span><br><span class="line">    <span class="comment"># 通过这个方法我们可以为学生对象绑定name和age两个属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">study</span><span class="params">(self, course_name)</span>:</span></span><br><span class="line">        print(<span class="string">'%s正在学习%s.'</span> % (self.name, course_name))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># PEP 8要求标识符的名字用全小写多个单词用下划线连接</span></span><br><span class="line">    <span class="comment"># 但是部分程序员和公司更倾向于使用驼峰命名法(驼峰标识)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">watch_movie</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.age &lt; <span class="number">18</span>:</span><br><span class="line">            print(<span class="string">'%s只能观看《熊出没》.'</span> % self.name)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'%s正在观看岛国爱情大电影.'</span> % self.name)</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p><strong>说明：</strong> 写在类中的函数，我们通常称之为（对象的）方法，这些方法就是对象可以接收的消息。</p>
+</blockquote>
+<h3 id="创建和使用对象"><a href="#创建和使用对象" class="headerlink" title="创建和使用对象"></a>创建和使用对象</h3><p>当我们定义好一个类之后，可以通过下面的方式来创建对象并给对象发消息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 创建学生对象并指定姓名和年龄</span></span><br><span class="line">    stu1 = Student(<span class="string">'骆昊'</span>, <span class="number">38</span>)</span><br><span class="line">    <span class="comment"># 给对象发study消息</span></span><br><span class="line">    stu1.study(<span class="string">'Python程序设计'</span>)</span><br><span class="line">    <span class="comment"># 给对象发watch_av消息</span></span><br><span class="line">    stu1.watch_movie()</span><br><span class="line">    stu2 = Student(<span class="string">'王大锤'</span>, <span class="number">15</span>)</span><br><span class="line">    stu2.study(<span class="string">'思想品德'</span>)</span><br><span class="line">    stu2.watch_movie()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<h3 id="访问可见性问题"><a href="#访问可见性问题" class="headerlink" title="访问可见性问题"></a>访问可见性问题</h3><p>对于上面的代码，有C++、Java、C#等编程经验的程序员可能会问，我们给<code>Student</code>对象绑定的<code>name</code>和<code>age</code>属性到底具有怎样的访问权限（也称为可见性）。因为在很多面向对象编程语言中，我们通常会将对象的属性设置为私有的（private）或受保护的（protected），简单的说就是不允许外界访问，而对象的方法通常都是公开的（public），因为公开的方法就是对象能够接受的消息。在Python中，属性和方法的访问权限只有两种，也就是公开的和私有的，如果希望属性是私有的，在给属性命名时可以用两个下划线作为开头，下面的代码可以验证这一点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, foo)</span>:</span></span><br><span class="line">        self.__foo = foo</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__bar</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.__foo)</span><br><span class="line">        print(<span class="string">'__bar'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    test = Test(<span class="string">'hello'</span>)</span><br><span class="line">    <span class="comment"># AttributeError: 'Test' object has no attribute '__bar'</span></span><br><span class="line">    test.__bar()</span><br><span class="line">    <span class="comment"># AttributeError: 'Test' object has no attribute '__foo'</span></span><br><span class="line">    print(test.__foo)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p>但是，Python并没有从语法上严格保证私有属性或方法的私密性，它只是给私有的属性和方法换了一个名字来“妨碍”对它们的访问，事实上如果你知道更换名字的规则仍然可以访问到它们，下面的代码就可以验证这一点。之所以这样设定，可以用这样一句名言加以解释，就是“We are all consenting adults here”。因为绝大多数程序员都认为开放比封闭要好，而且程序员要自己为自己的行为负责。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, foo)</span>:</span></span><br><span class="line">        self.__foo = foo</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__bar</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.__foo)</span><br><span class="line">        print(<span class="string">'__bar'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    test = Test(<span class="string">'hello'</span>)</span><br><span class="line">    test._Test__bar()</span><br><span class="line">    print(test._Test__foo)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p>在实际开发中，我们并不建议将属性设置为私有的，因为这会导致子类无法访问（后面会讲到）。所以大多数Python程序员会遵循一种命名惯例就是让属性名以单下划线开头来表示属性是受保护的，本类之外的代码在访问这样的属性时应该要保持慎重。这种做法并不是语法上的规则，单下划线开头的属性和方法外界仍然是可以访问的，所以更多的时候它是一种暗示或隐喻，关于这一点可以看看我的<a href="http://blog.csdn.net/jackfrued/article/details/79521404" target="_blank" rel="noopener">《Python - 那些年我们踩过的那些坑》</a>文章中的讲解。</p>
+<h3 id="面向对象的支柱"><a href="#面向对象的支柱" class="headerlink" title="面向对象的支柱"></a>面向对象的支柱</h3><p>面向对象有三大支柱：封装、继承和多态。后面两个概念在下一个章节中进行详细的说明，这里我们先说一下什么是封装。我自己对封装的理解是“隐藏一切可以隐藏的实现细节，只向外界暴露（提供）简单的编程接口”。我们在类中定义的方法其实就是把数据和对数据的操作封装起来了，在我们创建了对象之后，只需要给对象发送一个消息（调用方法）就可以执行方法中的代码，也就是说我们只需要知道方法的名字和传入的参数（方法的外部视图），而不需要知道方法内部的实现细节（方法的内部视图）。</p>
+<h2 id="练习（略）"><a href="#练习（略）" class="headerlink" title="练习（略）"></a>练习（略）</h2>
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://kyl1n.github.io">Who+X</a>
-            <p>原文链接：<a href="https://kyl1n.github.io/2019/06/20/Hola/">https://kyl1n.github.io/2019/06/20/Hola/</a>
-            <p>发表日期：<a href="https://kyl1n.github.io/2019/06/20/Hola/">June 20th 2019, 1:09:12 pm</a>
-            <p>更新日期：<a href="https://kyl1n.github.io/2019/06/20/Hola/">June 21st 2019, 10:43:20 pm</a>
+            <p>原文链接：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记08/">https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记08/</a>
+            <p>发表日期：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记08/">June 21st 2019, 12:36:08 pm</a>
+            <p>更新日期：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记08/">July 18th 2019, 12:35:18 am</a>
             <p>版权声明：</p>
         </div>
     
@@ -428,12 +458,17 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/06/21/《Python-100-Days》-学习笔记01/" title= "《Python-100-Days》- 学习笔记01">
-                    <div class="nextTitle">《Python-100-Days》- 学习笔记01</div>
+                <a href= "/2019/06/21/《Python-100-Days》-学习笔记09/" title= "《Python-100-Days》- 学习笔记09">
+                    <div class="nextTitle">《Python-100-Days》- 学习笔记09</div>
                 </a>
             
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/06/21/《Python-100-Days》-学习笔记07/" title= "《Python-100-Days》- 学习笔记07">
+                    <div class="prevTitle">《Python-100-Days》- 学习笔记07</div>
+                </a>
             
         </li>
     </ul>
@@ -559,7 +594,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0x00-前言"><span class="toc-number">1.</span> <span class="toc-text">0x00 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x08-Day08-面向对象编程基础"><span class="toc-number">2.</span> <span class="toc-text">0x08 Day08-面向对象编程基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-number">2.1.</span> <span class="toc-text">知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类和对象"><span class="toc-number">2.1.1.</span> <span class="toc-text">类和对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义类"><span class="toc-number">2.1.2.</span> <span class="toc-text">定义类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建和使用对象"><span class="toc-number">2.1.3.</span> <span class="toc-text">创建和使用对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#访问可见性问题"><span class="toc-number">2.1.4.</span> <span class="toc-text">访问可见性问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面向对象的支柱"><span class="toc-number">2.1.5.</span> <span class="toc-text">面向对象的支柱</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#练习（略）"><span class="toc-number">2.2.</span> <span class="toc-text">练习（略）</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

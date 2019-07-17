@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Who+X">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Who+X">
+    
+    <meta name="keywords" content="Reverse Engineering,Machine Learning,Penetration Test">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>《Python-100-Days》- 学习笔记12 · Who+X</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+        <!-- algolia -->
+        <script>
+            
+            var hits = JSON.parse('{"per_page":10}')
+            var labels = JSON.parse('{"input_placeholder":"Search for Posts","hits_empty":"We did not find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}')
+
+            var algolia = {
+                applicationID: 'MHR1WESTAQ',
+                apiKey: '9c4d490eda8e8866099525d876eb7a2a',
+                indexName: 'ABC',
+                hits: hits,
+                labels: labels
+            }
+        </script>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Who+X</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">《Python-100-Days》- 学习笔记12</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Who+X</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/articles/Python.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            《Python-100-Days》- 学习笔记12
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">3.1k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/06/21</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>偶然间发现一个python的教程地址为：<a href="https://github.com/jackfrued/Python-100-Days" target="_blank" rel="noopener">Python - 100天从新手到大师</a>，借此来提高自己的Python水平。</p>
+<h1 id="0x12-Day12-使用正则表达式"><a href="#0x12-Day12-使用正则表达式" class="headerlink" title="0x12 Day12-使用正则表达式"></a>0x12 Day12-使用正则表达式</h1><h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="正则表达式相关知识"><a href="#正则表达式相关知识" class="headerlink" title="正则表达式相关知识"></a>正则表达式相关知识</h3><p>在编写处理字符串的程序或网页时，经常会有查找符合某些复杂规则的字符串的需要，正则表达式就是用于描述这些规则的工具，换句话说正则表达式是一种工具，它定义了字符串的匹配模式（如何检查一个字符串是否有跟某种模式匹配的部分或者从一个字符串中将与模式匹配的部分提取出来或者替换掉）。如果你在Windows操作系统中使用过文件查找并且在指定文件名时使用过通配符（*和?），那么正则表达式也是与之类似的用来进行文本匹配的工具，只不过比起通配符正则表达式更强大，它能更精确地描述你的需求（当然你付出的代价是书写一个正则表达式比打出一个通配符要复杂得多，要知道任何给你带来好处的东西都是有代价的，就如同学习一门编程语言一样），比如你可以编写一个正则表达式，用来查找所有以0开头，后面跟着2-3个数字，然后是一个连字号“-”，最后是7或8位数字的字符串（像028-12345678或0813-7654321），这不就是国内的座机号码吗。最初计算机是为了做数学运算而诞生的，处理的信息基本上都是数值，而今天我们在日常工作中处理的信息基本上都是文本数据，我们希望计算机能够识别和处理符合某些模式的文本，正则表达式就显得非常重要了。今天几乎所有的编程语言都提供了对正则表达式操作的支持，Python通过标准库中的re模块来支持正则表达式操作。</p>
+<p>我们可以考虑下面一个问题：我们从某个地方（可能是一个文本文件，也可能是网络上的一则新闻）获得了一个字符串，希望在字符串中找出手机号和座机号。当然我们可以设定手机号是11位的数字（注意并不是随机的11位数字，因为你没有见过“25012345678”这样的手机号吧）而座机号跟上一段中描述的模式相同，如果不使用正则表达式要完成这个任务就会很麻烦。</p>
+<p>关于正则表达式的相关知识，大家可以阅读一篇非常有名的博客叫<a href="https://deerchao.net/tutorials/regex/regex.htm" target="_blank" rel="noopener">《正则表达式30分钟入门教程》</a>，读完这篇文章后你就可以看懂下面的表格，这是我们对正则表达式中的一些基本符号进行的扼要总结。</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>解释</th>
+<th>示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.</td>
+<td>匹配任意字符</td>
+<td>b.t</td>
+<td>可以匹配bat / but / b#t / b1t等</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配字母/数字/下划线</td>
+<td>b\wt</td>
+<td>可以匹配bat / b1t / b_t等<br>但不能匹配b#t</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配空白字符（包括\r、\n、\t等）</td>
+<td>love\syou</td>
+<td>可以匹配love you</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配数字</td>
+<td>\d\d</td>
+<td>可以匹配01 / 23 / 99等</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配单词的边界</td>
+<td>\bThe\b</td>
+<td></td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配字符串的开始</td>
+<td>^The</td>
+<td>可以匹配The开头的字符串</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串的结束</td>
+<td>.exe$</td>
+<td>可以匹配.exe结尾的字符串</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>匹配非字母/数字/下划线</td>
+<td>b\Wt</td>
+<td>可以匹配b#t / b@t等<br>但不能匹配but / b1t / b_t等</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配非空白字符</td>
+<td>love\Syou</td>
+<td>可以匹配love#you等<br>但不能匹配love you</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配非数字</td>
+<td>\d\D</td>
+<td>可以匹配9a / 3# / 0F等</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配非单词边界</td>
+<td>\Bio\B</td>
+<td></td>
+</tr>
+<tr>
+<td>[]</td>
+<td>匹配来自字符集的任意单一字符</td>
+<td>[aeiou]</td>
+<td>可以匹配任一元音字母字符</td>
+</tr>
+<tr>
+<td>[^]</td>
+<td>匹配不在字符集中的任意单一字符</td>
+<td>[^aeiou]</td>
+<td>可以匹配任一非元音字母字符</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配0次或多次</td>
+<td>\w*</td>
+<td></td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配1次或多次</td>
+<td>\w+</td>
+<td></td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配0次或1次</td>
+<td>\w?</td>
+<td></td>
+</tr>
+<tr>
+<td>{N}</td>
+<td>匹配N次</td>
+<td>\w{3}</td>
+<td></td>
+</tr>
+<tr>
+<td>{M,}</td>
+<td>匹配至少M次</td>
+<td>\w{3,}</td>
+<td></td>
+</tr>
+<tr>
+<td>{M,N}</td>
+<td>匹配至少M次至多N次</td>
+<td>\w{3,6}</td>
+<td></td>
+</tr>
+<tr>
+<td>|</td>
+<td>分支</td>
+<td>foo|bar</td>
+<td>可以匹配foo或者bar</td>
+</tr>
+<tr>
+<td>(?#)</td>
+<td>注释</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>(exp)</td>
+<td>匹配exp并捕获到自动命名的组中</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>(?&nbsp;&lt;name&gt;exp)</td>
+<td>匹配exp并捕获到名为name的组中</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>(?:exp)</td>
+<td>匹配exp但是不捕获匹配的文本</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>(?=exp)</td>
+<td>匹配exp前面的位置</td>
+<td>\b\w+(?=ing)</td>
+<td>可以匹配I’m dancing中的danc</td>
+</tr>
+<tr>
+<td>(?&lt;=exp)</td>
+<td>匹配exp后面的位置</td>
+<td>(?&lt;=\bdanc)\w+\b</td>
+<td>可以匹配I love dancing and reading中的第一个ing</td>
+</tr>
+<tr>
+<td>(?!exp)</td>
+<td>匹配后面不是exp的位置</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>(?&lt;!exp)</td>
+<td>匹配前面不是exp的位置</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>*?</td>
+<td>重复任意次，但尽可能少重复</td>
+<td>a.*b<br>a.*?b</td>
+<td>将正则表达式应用于aabab，前者会匹配整个字符串aabab，后者会匹配aab和ab两个字符串</td>
+</tr>
+<tr>
+<td>+?</td>
+<td>重复1次或多次，但尽可能少重复</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>??</td>
+<td>重复0次或1次，但尽可能少重复</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{M,N}?</td>
+<td>重复M到N次，但尽可能少重复</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>{M,}?</td>
+<td>重复M次以上，但尽可能少重复</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>说明：</strong> 如果需要匹配的字符是正则表达式中的特殊字符，那么可以使用\进行转义处理，例如想匹配小数点可以写成\.就可以了，因为直接写.会匹配任意字符；同理，想匹配圆括号必须写成\(和\)，否则圆括号被视为正则表达式中的分组。</p>
+</blockquote>
+<h3 id="Python对正则表达式的支持"><a href="#Python对正则表达式的支持" class="headerlink" title="Python对正则表达式的支持"></a>Python对正则表达式的支持</h3><p>Python提供了re模块来支持正则表达式相关操作，下面是re模块中的核心函数。</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>compile(pattern, flags=0)</td>
+<td>编译正则表达式返回正则表达式对象</td>
+</tr>
+<tr>
+<td>match(pattern, string, flags=0)</td>
+<td>用正则表达式匹配字符串 成功返回匹配对象 否则返回None</td>
+</tr>
+<tr>
+<td>search(pattern, string, flags=0)</td>
+<td>搜索字符串中第一次出现正则表达式的模式 成功返回匹配对象 否则返回None</td>
+</tr>
+<tr>
+<td>split(pattern, string, maxsplit=0, flags=0)</td>
+<td>用正则表达式指定的模式分隔符拆分字符串 返回列表</td>
+</tr>
+<tr>
+<td>sub(pattern, repl, string, count=0, flags=0)</td>
+<td>用指定的字符串替换原字符串中与正则表达式匹配的模式 可以用count指定替换的次数</td>
+</tr>
+<tr>
+<td>fullmatch(pattern, string, flags=0)</td>
+<td>match函数的完全匹配（从字符串开头到结尾）版本</td>
+</tr>
+<tr>
+<td>findall(pattern, string, flags=0)</td>
+<td>查找字符串所有与正则表达式匹配的模式 返回字符串的列表</td>
+</tr>
+<tr>
+<td>finditer(pattern, string, flags=0)</td>
+<td>查找字符串所有与正则表达式匹配的模式 返回一个迭代器</td>
+</tr>
+<tr>
+<td>purge()</td>
+<td>清除隐式编译的正则表达式的缓存</td>
+</tr>
+<tr>
+<td>re.I / re.IGNORECASE</td>
+<td>忽略大小写匹配标记</td>
+</tr>
+<tr>
+<td>re.M / re.MULTILINE</td>
+<td>多行匹配标记</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>说明：</strong> 上面提到的re模块中的这些函数，实际开发中也可以用正则表达式对象的方法替代对这些函数的使用，如果一个正则表达式需要重复的使用，那么先通过compile函数编译正则表达式并创建出正则表达式对象无疑是更为明智的选择。</p>
+</blockquote>
+<p>下面我们通过一系列的例子来告诉大家在Python中如何使用正则表达式。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h4 id="例子1：验证输入用户名和QQ号是否有效并给出对应的提示信息。"><a href="#例子1：验证输入用户名和QQ号是否有效并给出对应的提示信息。" class="headerlink" title="例子1：验证输入用户名和QQ号是否有效并给出对应的提示信息。"></a>例子1：验证输入用户名和QQ号是否有效并给出对应的提示信息。</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">验证输入用户名和QQ号是否有效并给出对应的提示信息</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要求：用户名必须由字母、数字或下划线构成且长度在6~20个字符之间，QQ号是5~12的数字且首位不能为0</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    username = input(<span class="string">'请输入用户名: '</span>)</span><br><span class="line">    qq = input(<span class="string">'请输入QQ号: '</span>)</span><br><span class="line">    <span class="comment"># match函数的第一个参数是正则表达式字符串或正则表达式对象</span></span><br><span class="line">    <span class="comment"># 第二个参数是要跟正则表达式做匹配的字符串对象</span></span><br><span class="line">    m1 = re.match(<span class="string">r'^[0-9a-zA-Z_]&#123;6,20&#125;$'</span>, username)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> m1:</span><br><span class="line">        print(<span class="string">'请输入有效的用户名.'</span>)</span><br><span class="line">    m2 = re.match(<span class="string">r'^[1-9]\d&#123;4,11&#125;$'</span>, qq)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> m2:</span><br><span class="line">        print(<span class="string">'请输入有效的QQ号.'</span>)</span><br><span class="line">    <span class="keyword">if</span> m1 <span class="keyword">and</span> m2:</span><br><span class="line">        print(<span class="string">'你输入的信息是有效的!'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>提示：</strong> 上面在书写正则表达式时使用了“原始字符串”的写法（在字符串前面加上了r），所谓“原始字符串”就是字符串中的每个字符都是它原始的意义，说得更直接一点就是字符串中没有所谓的转义字符啦。因为正则表达式中有很多元字符和需要进行转义的地方，如果不使用原始字符串就需要将反斜杠写作\\，例如表示数字的\d得书写成\\d，这样不仅写起来不方便，阅读的时候也会很吃力。</p>
+</blockquote>
+<h4 id="例子2：从一段文字中提取出国内手机号码。"><a href="#例子2：从一段文字中提取出国内手机号码。" class="headerlink" title="例子2：从一段文字中提取出国内手机号码。"></a>例子2：从一段文字中提取出国内手机号码。</h4><p>下面这张图是截止到2017年底，国内三家运营商推出的手机号段。</p>
+<p><img src="/2019/06/21/《Python-100-Days》-学习笔记12/Users/admin/Desktop/%E4%B9%A6%E7%B1%8D/Python-100-Days-master/Day01-15/res/tel-start-number.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 创建正则表达式对象 使用了前瞻和回顾来保证手机号前后不应该出现数字</span></span><br><span class="line">    pattern = re.compile(<span class="string">r'(?&lt;=\D)1[34578]\d&#123;9&#125;(?=\D)'</span>)</span><br><span class="line">    sentence = <span class="string">'''</span></span><br><span class="line"><span class="string">    重要的事情说8130123456789遍，我的手机号是13512346789这个靓号，</span></span><br><span class="line"><span class="string">    不是15600998765，也是110或119，王大锤的手机号才是15600998765。</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 查找所有匹配并保存到一个列表中</span></span><br><span class="line">    mylist = re.findall(pattern, sentence)</span><br><span class="line">    print(mylist)</span><br><span class="line">    print(<span class="string">'--------华丽的分隔线--------'</span>)</span><br><span class="line">    <span class="comment"># 通过迭代器取出匹配对象并获得匹配的内容</span></span><br><span class="line">    <span class="keyword">for</span> temp <span class="keyword">in</span> pattern.finditer(sentence):</span><br><span class="line">        print(temp.group())</span><br><span class="line">    print(<span class="string">'--------华丽的分隔线--------'</span>)</span><br><span class="line">    <span class="comment"># 通过search函数指定搜索位置找出所有匹配</span></span><br><span class="line">    m = pattern.search(sentence)</span><br><span class="line">    <span class="keyword">while</span> m:</span><br><span class="line">        print(m.group())</span><br><span class="line">        m = pattern.search(sentence, m.end())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明：</strong> 上面匹配国内手机号的正则表达式并不够好，因为像14开头的号码只有145或147，而上面的正则表达式并没有考虑这种情况，要匹配国内手机号，更好的正则表达式的写法是：<code>(?&lt;=\D)(1[38]\d{9}|14[57]\d{8}|15[0-35-9]\d{8}|17[678]\d{8})(?=\D)</code>，国内最近好像有19和16开头的手机号了，但是这个暂时不在我们考虑之列。</p>
+</blockquote>
+<h4 id="例子3：替换字符串中的不良内容"><a href="#例子3：替换字符串中的不良内容" class="headerlink" title="例子3：替换字符串中的不良内容"></a>例子3：替换字符串中的不良内容</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    sentence = <span class="string">'你丫是傻叉吗? 我操你大爷的. Fuck you.'</span></span><br><span class="line">    purified = re.sub(<span class="string">'[操肏艹]|fuck|shit|傻[比屄逼叉缺吊屌]|煞笔'</span>,</span><br><span class="line">                      <span class="string">'*'</span>, sentence, flags=re.IGNORECASE)</span><br><span class="line">    print(purified)  <span class="comment"># 你丫是*吗? 我*你大爷的. * you.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>说明：</strong> re模块的正则表达式相关函数中都有一个flags参数，它代表了正则表达式的匹配标记，可以通过该标记来指定匹配时是否忽略大小写、是否进行多行匹配、是否显示调试信息等。如果需要为flags参数指定多个值，可以使用<a href="http://www.runoob.com/python/python-operators.html#ysf5" target="_blank" rel="noopener">按位或运算符</a>进行叠加，如<code>flags=re.I | re.M</code>。</p>
+</blockquote>
+<h4 id="例子4：拆分长字符串"><a href="#例子4：拆分长字符串" class="headerlink" title="例子4：拆分长字符串"></a>例子4：拆分长字符串</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    poem = <span class="string">'窗前明月光，疑是地上霜。举头望明月，低头思故乡。'</span></span><br><span class="line">    sentence_list = re.split(<span class="string">r'[，。, .]'</span>, poem)</span><br><span class="line">    <span class="keyword">while</span> <span class="string">''</span> <span class="keyword">in</span> sentence_list:</span><br><span class="line">        sentence_list.remove(<span class="string">''</span>)</span><br><span class="line">    print(sentence_list)  <span class="comment"># ['窗前明月光', '疑是地上霜', '举头望明月', '低头思故乡']</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>如果要从事爬虫类应用的开发，那么正则表达式一定是一个非常好的助手，因为它可以帮助我们迅速的从网页代码中发现某种我们指定的模式并提取出我们需要的信息，当然对于初学者来收，要编写一个正确的适当的正则表达式可能并不是一件容易的事情（当然有些常用的正则表达式可以直接在网上找找），所以实际开发爬虫应用的时候，有很多人会选择<a href="https://www.crummy.com/software/BeautifulSoup/" target="_blank" rel="noopener">Beautiful Soup</a>或<a href="http://lxml.de/" target="_blank" rel="noopener">Lxml</a>来进行匹配和信息的提取，前者简单方便但是性能较差，后者既好用性能也好，但是安装稍嫌麻烦，这些内容我们会在后期的爬虫专题中为大家介绍。</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://kyl1n.github.io">Who+X</a>
+            <p>原文链接：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记12/">https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记12/</a>
+            <p>发表日期：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记12/">June 21st 2019, 12:36:12 pm</a>
+            <p>更新日期：<a href="https://kyl1n.github.io/2019/06/21/《Python-100-Days》-学习笔记12/">July 18th 2019, 12:36:01 am</a>
+            <p>版权声明：</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/06/21/《Python-100-Days》-学习笔记13/" title= "《Python-100-Days》- 学习笔记13">
+                    <div class="nextTitle">《Python-100-Days》- 学习笔记13</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/06/21/《Python-100-Days》-学习笔记11/" title= "《Python-100-Days》- 学习笔记11">
+                    <div class="prevTitle">《Python-100-Days》- 学习笔记11</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+    
+        
+            
+                <a href="https://github.com/KYL1N" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/wechat.png" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://www.weibo.com/" class="iconfont-archer weibo" target="_blank" title=weibo></a>
+            
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://www.facebook.com/" class="iconfont-archer facebook" target="_blank" title=facebook></a>
+            
+        
+    
+        
+            
+                <a href="https://twitter.com/" class="iconfont-archer twitter" target="_blank" title=twitter></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Think <a href="https://www.google.com/" target="_blank">Twice</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Code <a href="https://github.com/KYL1N" target="_blank">Once</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span></span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0x00-前言"><span class="toc-number">1.</span> <span class="toc-text">0x00 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x12-Day12-使用正则表达式"><span class="toc-number">2.</span> <span class="toc-text">0x12 Day12-使用正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-number">2.1.</span> <span class="toc-text">知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式相关知识"><span class="toc-number">2.1.1.</span> <span class="toc-text">正则表达式相关知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python对正则表达式的支持"><span class="toc-number">2.1.2.</span> <span class="toc-text">Python对正则表达式的支持</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">2.2.</span> <span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#例子1：验证输入用户名和QQ号是否有效并给出对应的提示信息。"><span class="toc-number">2.2.0.1.</span> <span class="toc-text">例子1：验证输入用户名和QQ号是否有效并给出对应的提示信息。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#例子2：从一段文字中提取出国内手机号码。"><span class="toc-number">2.2.0.2.</span> <span class="toc-text">例子2：从一段文字中提取出国内手机号码。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#例子3：替换字符串中的不良内容"><span class="toc-number">2.2.0.3.</span> <span class="toc-text">例子3：替换字符串中的不良内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#例子4：拆分长字符串"><span class="toc-number">2.2.0.4.</span> <span class="toc-text">例子4：拆分长字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后话"><span class="toc-number">2.2.1.</span> <span class="toc-text">后话</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 14
+        </div>
+        <!-- search  -->
+        
+            <div class="site-search popup-trigger">
+                <span class="iconfont-archer search-icon">&#xe627;</span>
+            </div>
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记08/" >《Python-100-Days》- 学习笔记08</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记13/" >《Python-100-Days》- 学习笔记13</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记10/" >《Python-100-Days》- 学习笔记10</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记01/" >《Python-100-Days》- 学习笔记01</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记11/" >《Python-100-Days》- 学习笔记11</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记09/" >《Python-100-Days》- 学习笔记09</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记12/" >《Python-100-Days》- 学习笔记12</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记07/" >《Python-100-Days》- 学习笔记07</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记06/" >《Python-100-Days》- 学习笔记06</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记04/" >《Python-100-Days》- 学习笔记04</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记02/" >《Python-100-Days》- 学习笔记02</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记05/" >《Python-100-Days》- 学习笔记05</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/《Python-100-Days》-学习笔记03/" >《Python-100-Days》- 学习笔记03</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/20</span><a class="archive-post-title" href= "/2019/06/20/Hola/" >Hola</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Who+X"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+        <div class="site-search">
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="iconfont-archer">&#xe609;</i>
+    </span>
+  </div>
+</div>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js" defer></script>
+        <script src="/scripts/search.js" defer></script>
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
